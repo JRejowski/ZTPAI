@@ -11,17 +11,27 @@
     width: 45%;
     text-align: center;
     line-height: 0.01em;
+    margin-top: -5em;
 
 }
 h1{
     font-family: 'AIGDT';
     font-style: oblique;
     font-size: 13vh;
+    margin-top: 0;
+}
+
+h2{
+    font-family: 'Arial';
+    font-style: oblique;
+    font-size: 4vh;
+    margin-left: 1em;
 }
 
 .login-container{
-    width: 55%;
+    width: 50%;
 }
+
 
 form.login{
     display: flex;
@@ -30,8 +40,18 @@ form.login{
     align-items: center;
     width: 80%;
     height: 40vh;
+    background: #FFFFFF;
+    mix-blend-mode: normal;
+    border-radius: 40px;
+}
 
-
+form.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 60vh;
     background: #FFFFFF;
     mix-blend-mode: normal;
     border-radius: 40px;
@@ -46,7 +66,7 @@ form.login{
     color:black;
     font-size: 1.5em;
     letter-spacing: 0.2em;
-    margin: 1em;
+    margin-top: 1em;
     line-height: 2em;
 }
 #non-registered-button
@@ -65,7 +85,7 @@ input
     background-color: transparent;
     border: none;
     border-bottom: 1px solid grey;
-    padding: 1em;
+    padding: 1.5em;
     margin: 1em;
     width: 70%;
 }

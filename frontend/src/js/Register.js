@@ -7,9 +7,11 @@ function Register(){
             <div className="logo">
                 <img src={logo}/>
                     <h1>KYS</h1>
+                    <h2>Know your supplements</h2>
             </div>
             <div className="login-container">
-                <form className="login" action="register">
+                <form className="register" action="register">
+                    <input name="login" type="text" placeholder="login" required/>
                     <input name="email" type="text" placeholder="email@email.com" required/>
                         <input name="password" type="password" placeholder="password" required/>
                             <input name="repeatPassword" type="password" placeholder="repeat password" required/>

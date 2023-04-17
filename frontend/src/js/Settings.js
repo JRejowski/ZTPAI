@@ -1,17 +1,25 @@
+import React, { useState } from 'react';
 import Navigation from "./Nav";
+import ChangePasswordModal from "./ChangePasswordModal";
+import ChangeEmailModal from "./ChangeEmailModal";
 import  '../css/settings.css';
+import DeleteAccountModal from "./DeleteAccountModal";
+
 
 
 
 function Settings(){
+
+    const [openModal, setOpenModal] = useState(false);
+
     return (
         <div className="base-container">
             <Navigation/>
             <main>
                 <h1>Settings</h1>
-                <button>change password</button>
-                <button>change email</button>
-                <button>delete account</button>
+                <ChangePasswordModal/>
+                <ChangeEmailModal/>
+                <DeleteAccountModal/>
 
             </main>
         </div>

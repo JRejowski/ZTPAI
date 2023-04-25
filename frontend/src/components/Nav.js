@@ -2,27 +2,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRankingStar, faCog, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import '../css/nav.css'
 import logo from '../img/logo.svg'
+import {Link} from "react-router-dom";
 function Navigation() {
     return (
         <nav>
-            <img src={logo}/>
-                <h3>KYS</h3>
+            <Link to="/home"><img src={logo}/></Link>
+            <h3>KYS</h3>
             <ul>
             <li>
                 <FontAwesomeIcon icon={faRankingStar} className="icon" />
-                <a className="button">rankings</a>
+                <Link className="button" to="/rankings">rankings</Link>
             </li>
             <li>
                 <FontAwesomeIcon icon={faUser} className="icon" />
-                <a className="button">profile</a>
+                <Link className="button" to="/profile">profile</Link>
             </li>
             <li>
                 <FontAwesomeIcon icon={faCog} className="icon" />
-                <a className="button">settings</a>
+                <Link className="button" to="/settings">settings</Link>
             </li>
             <li>
                 <FontAwesomeIcon icon={faSignOutAlt} className="icon" />
-                <a className="button">logout</a>
+                <Link className="button" to="/login">logout</Link>
             </li>
         </ul>
         </nav>

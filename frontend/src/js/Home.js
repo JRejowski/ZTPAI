@@ -1,4 +1,4 @@
-import Navigation from "./Nav";
+import Navigation from "../components/Nav";
 import  '../css/home.css'
 
 

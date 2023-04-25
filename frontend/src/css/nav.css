@@ -7,9 +7,9 @@ nav{
     justify-content: flex-start;
 }
 
-nav > img{
+img{
     width: 80%;
-    margin: 0.4em auto;
+    margin: 0.4em 2.5em;
 }
 
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Navigation from "./Nav";
-import ChangePasswordModal from "./ChangePasswordModal";
-import ChangeEmailModal from "./ChangeEmailModal";
+import Navigation from "../components/Nav";
+import ChangePasswordModal from "../components/ChangePasswordModal";
+import ChangeEmailModal from "../components/ChangeEmailModal";
 import  '../css/settings.css';
-import DeleteAccountModal from "./DeleteAccountModal";
+import DeleteAccountModal from "../components/DeleteAccountModal";
 
 
 
@@ -20,7 +20,6 @@ function Settings(){
                 <ChangePasswordModal/>
                 <ChangeEmailModal/>
                 <DeleteAccountModal/>
-
             </main>
         </div>
     );

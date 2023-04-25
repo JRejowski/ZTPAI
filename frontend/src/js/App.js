@@ -6,6 +6,7 @@ import Login from './Login';
 import Register from './Register';
 import Profile  from './Profile';
 import Settings from './Settings';
+import Rankings from "./Rankings";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/profile" component={Profile} />
                 <Route exact path="/settings" component={Settings} />
+                <Route exact path="/rankings" component={Rankings} />
             </Switch>
         </div>
     );

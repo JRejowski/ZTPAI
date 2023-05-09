@@ -1,31 +1,30 @@
-package entity;
+package com.example.backend.entity;
 
 import jakarta.persistence.*;
 
 import java.util.Collection;
 
 @Entity
-@Table(name = "user", schema = "public", catalog = "postgres")
-public class UserEntity {
+public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, length = 100)
     private String email;
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 255)
     private String password;
     @OneToMany(mappedBy = "userByUserId")
-    private Collection<FavouriteProductEntity> favouriteProductsById;
+    private Collection<FavouriteProduct> favouriteProductsById;
     @OneToMany(mappedBy = "userByUserId")
-    private Collection<ProductRatingsEntity> productRatingsById;
+    private Collection<ProductRatings> productRatingsById;
     @OneToMany(mappedBy = "userByUserId")
-    private Collection<ProductReviewEntity> productReviewsById;
+    private Collection<ProductReview> productReviewsById;
 
     public int getId() {
         return id;
@@ -64,12 +63,12 @@ public class UserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserEntity that = (UserEntity) o;
+        User user = (User) o;
 
-        if (id != that.id) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (id != user.id) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
 
         return true;
     }
@@ -83,27 +82,27 @@ public class UserEntity {
         return result;
     }
 
-    public Collection<FavouriteProductEntity> getFavouriteProductsById() {
+    public Collection<FavouriteProduct> getFavouriteProductsById() {
         return favouriteProductsById;
     }
 
-    public void setFavouriteProductsById(Collection<FavouriteProductEntity> favouriteProductsById) {
+    public void setFavouriteProductsById(Collection<FavouriteProduct> favouriteProductsById) {
         this.favouriteProductsById = favouriteProductsById;
     }
 
-    public Collection<ProductRatingsEntity> getProductRatingsById() {
+    public Collection<ProductRatings> getProductRatingsById() {
         return productRatingsById;
     }
 
-    public void setProductRatingsById(Collection<ProductRatingsEntity> productRatingsById) {
+    public void setProductRatingsById(Collection<ProductRatings> productRatingsById) {
         this.productRatingsById = productRatingsById;
     }
 
-    public Collection<ProductReviewEntity> getProductReviewsById() {
+    public Collection<ProductReview> getProductReviewsById() {
         return productReviewsById;
     }
 
-    public void setProductReviewsById(Collection<ProductReviewEntity> productReviewsById) {
+    public void setProductReviewsById(Collection<ProductReview> productReviewsById) {
         this.productReviewsById = productReviewsById;
     }
 }

@@ -1,22 +1,26 @@
-package entity;
+package com.example.backend.entity;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user_following", schema = "public", catalog = "postgres")
-public class UserFollowingEntity {
+public class UserFollowing {
     @Basic
-    @Column(name = "id_follower")
+    @Column(name = "id_follower", nullable = false)
     private int idFollower;
     @Basic
-    @Column(name = "id_following")
+    @Column(name = "id_following", nullable = false)
     private int idFollowing;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id", nullable = false)
+    private int id;
     @ManyToOne
     @JoinColumn(name = "id_follower", referencedColumnName = "id", nullable = false)
-    private UserEntity userByIdFollower;
+    private User userByIdFollower;
     @ManyToOne
     @JoinColumn(name = "id_following", referencedColumnName = "id", nullable = false)
-    private UserEntity userByIdFollowing;
+    private User userByIdFollowing;
 
     public int getIdFollower() {
         return idFollower;
@@ -34,15 +38,24 @@ public class UserFollowingEntity {
         this.idFollowing = idFollowing;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserFollowingEntity that = (UserFollowingEntity) o;
+        UserFollowing that = (UserFollowing) o;
 
         if (idFollower != that.idFollower) return false;
         if (idFollowing != that.idFollowing) return false;
+        if (id != that.id) return false;
 
         return true;
     }
@@ -51,22 +64,23 @@ public class UserFollowingEntity {
     public int hashCode() {
         int result = idFollower;
         result = 31 * result + idFollowing;
+        result = 31 * result + id;
         return result;
     }
 
-    public UserEntity getUserByIdFollower() {
+    public User getUserByIdFollower() {
         return userByIdFollower;
     }
 
-    public void setUserByIdFollower(UserEntity userByIdFollower) {
+    public void setUserByIdFollower(User userByIdFollower) {
         this.userByIdFollower = userByIdFollower;
     }
 
-    public UserEntity getUserByIdFollowing() {
+    public User getUserByIdFollowing() {
         return userByIdFollowing;
     }
 
-    public void setUserByIdFollowing(UserEntity userByIdFollowing) {
+    public void setUserByIdFollowing(User userByIdFollowing) {
         this.userByIdFollowing = userByIdFollowing;
     }
 }

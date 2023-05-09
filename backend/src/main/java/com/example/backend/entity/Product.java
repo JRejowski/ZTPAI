@@ -1,4 +1,4 @@
-package entity;
+package com.example.backend.entity;
 
 import jakarta.persistence.*;
 
@@ -6,29 +6,28 @@ import java.math.BigDecimal;
 import java.util.Collection;
 
 @Entity
-@Table(name = "product", schema = "public", catalog = "postgres")
-public class ProductEntity {
+public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
     @Basic
-    @Column(name = "description")
+    @Column(name = "description", nullable = false, length = 255)
     private String description;
     @Basic
-    @Column(name = "producer")
+    @Column(name = "producer", nullable = false, length = 50)
     private String producer;
     @Basic
-    @Column(name = "category")
+    @Column(name = "category", nullable = false, length = 50)
     private String category;
     @Basic
-    @Column(name = "rating")
+    @Column(name = "rating", nullable = false, precision = 1)
     private BigDecimal rating;
     @OneToMany(mappedBy = "productByProductId")
-    private Collection<FavouriteProductEntity> favouriteProductsById;
+    private Collection<FavouriteProduct> favouriteProductsById;
 
     public int getId() {
         return id;
@@ -83,14 +82,14 @@ public class ProductEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ProductEntity that = (ProductEntity) o;
+        Product product = (Product) o;
 
-        if (id != that.id) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (producer != null ? !producer.equals(that.producer) : that.producer != null) return false;
-        if (category != null ? !category.equals(that.category) : that.category != null) return false;
-        if (rating != null ? !rating.equals(that.rating) : that.rating != null) return false;
+        if (id != product.id) return false;
+        if (name != null ? !name.equals(product.name) : product.name != null) return false;
+        if (description != null ? !description.equals(product.description) : product.description != null) return false;
+        if (producer != null ? !producer.equals(product.producer) : product.producer != null) return false;
+        if (category != null ? !category.equals(product.category) : product.category != null) return false;
+        if (rating != null ? !rating.equals(product.rating) : product.rating != null) return false;
 
         return true;
     }
@@ -106,11 +105,11 @@ public class ProductEntity {
         return result;
     }
 
-    public Collection<FavouriteProductEntity> getFavouriteProductsById() {
+    public Collection<FavouriteProduct> getFavouriteProductsById() {
         return favouriteProductsById;
     }
 
-    public void setFavouriteProductsById(Collection<FavouriteProductEntity> favouriteProductsById) {
+    public void setFavouriteProductsById(Collection<FavouriteProduct> favouriteProductsById) {
         this.favouriteProductsById = favouriteProductsById;
     }
 }

@@ -1,0 +1,62 @@
+.product-details{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.product-info{
+    width: 75vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
+}
+
+.product-rating{
+    width: 75vw;
+    justify-content: left;
+}
+
+.product-rating>h2{
+    margin: 0.6em 0;
+}
+
+.product-comments{
+    width: 75vw;
+}
+
+.product-comments>h2{
+    margin: 0.6em 0;
+}
+
+
+.comment-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-form>textarea{
+
+    width: 75vw;
+    border-radius: 1em;
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+.comment-form>button{
+    width: 15vw;
+    height: 3em;
+    background: #8f94fb;
+    border-radius: 1em;
+
+}
+
+.comment{
+    margin: 1em 0;
+    border: 1px solid grey;
+    border-radius: 1em;
+    background: #ccc;
+    padding: 0.5em;
+}
+

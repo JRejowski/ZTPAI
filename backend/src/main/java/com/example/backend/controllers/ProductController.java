@@ -8,9 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/products")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
     private final ProductService productService;
@@ -38,8 +38,13 @@ public class ProductController {
 
     @GetMapping("/category/{category}")
     public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable String category) {
-        List<Product> products = productService.getProductsByCategory(category);
+        List<Product> products = productService.getProductsByCategorySortedByRankingDesc(category);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam("query") String query) {
+        List<Product> products = productService.searchProducts(query);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
 }

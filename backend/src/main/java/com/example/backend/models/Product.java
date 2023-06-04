@@ -21,6 +21,7 @@ public class Product {
     private String description;
     private String producer;
     private String category;
+    private String img;
     private double ranking;
 
 }

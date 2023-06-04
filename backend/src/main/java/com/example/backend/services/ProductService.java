@@ -25,10 +25,12 @@ public class ProductService {
         return productRepository.findById(productId).orElse(null);
     }
 
-    public List<Product> getProductsByCategory(String category) {
-        return productRepository.findByCategory(category);
+    public List<Product> getProductsByCategorySortedByRankingDesc(String category) {
+        return productRepository.findByCategoryOrderByRankingDesc(category);
     }
 
-
+    public List<Product> searchProducts(String query) {
+        return productRepository.findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(query, query);
+    }
 }
 

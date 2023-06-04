@@ -1,8 +1,18 @@
+import Navigation from "../components/Nav";
+import RatedByMe from "../components/RatedByMe";
+import ReviewedByMe from "../components/ReviewedByMe";
+
+
 function Profile(){
     return (
-        <body>
-        <h1>Profile</h1>
-        </body>
+        <div className="base-container">
+            <Navigation/>
+            <main>
+                <h1>ProfileName</h1>
+                <RatedByMe/>
+                <ReviewedByMe/>
+            </main>
+        </div>
     );
 }
 

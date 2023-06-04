@@ -27,4 +27,16 @@ public class UserService {
     }
 
 
+    public boolean doesUserExist(String login) {
+        return userRepository.existsByLogin(login);
+    }
+
+    public void registerUser(User user) {
+        userRepository.save(user);
+    }
+
+    public boolean doesEmailExist(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
 }

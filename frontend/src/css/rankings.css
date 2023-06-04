@@ -1,0 +1,14 @@
+
+.products {
+    width: 60vw;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-bottom: 10px;
+}
+.products>img{
+    width: auto;
+    height: auto;
+}
+

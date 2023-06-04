@@ -1,21 +1,30 @@
+import React, { useState } from "react";
 import Select from "react-select";
-import "../css/categorypicker.css"
+import "../css/categorypicker.css";
 
-function CategoryPicker(){
-
+function CategoryPicker({ onCategoryChange }) {
     const options = [
-        {value: "protein", label:"Protein"},
-        {value: "creatine", label:"Creatine"},
-        {value: "preworkout", label:"Pre-Workout"},
-        {value: "mass", label:"Gainers"},
-        {value: "aminoacids", label:"Aminoacids"}
+        { value: "Whey", label: "Protein" },
+        { value: "Creatine", label: "Creatine" },
+        { value: "Preworkout", label: "Pre-Workout" },
+        { value: "Mass", label: "Gainers" },
+        { value: "Aminoacids", label: "Aminoacids" },
     ];
-    const handleChange =(selectedOption) => {
-        console.log("hangleChange", selectedOption);
-    }
+
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleChange = (selectedOption) => {
+        setSelectedOption(selectedOption);
+        onCategoryChange(selectedOption?.value); // Przekazanie wybranej kategorii do komponentu nadrzędnego
+    };
 
     return (
-        <Select className="categoryPicker" options={options} onChange={handleChange}/>
+        <Select
+            className="categoryPicker"
+            options={options}
+            value={selectedOption}
+            onChange={handleChange}
+        />
     );
 }
 

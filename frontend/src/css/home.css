@@ -30,3 +30,24 @@ main{
     margin: 0;
     box-sizing: border-box;
 }
+
+.supplements {
+    width: 60vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
+}
+
+.product{
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+

@@ -5,6 +5,7 @@ import com.example.backend.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+;
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin(origins="http://localhost:3000")
@@ -18,6 +19,7 @@ public class SecurityController {
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody RegistrationRequest request) {
+
         if (userService.doesUserExist(request.getLogin())) {
             return ResponseEntity.badRequest().body("Użytkownik o podanym loginie już istnieje.");
         }
@@ -39,6 +41,8 @@ public class SecurityController {
 
         userService.registerUser(user);
 
-        return ResponseEntity.ok("Rejestracja zakończona pomyślnie.");
+
+
+        return ResponseEntity.ok("jsonString");
     }
 }

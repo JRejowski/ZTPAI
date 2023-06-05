@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function RegisterContainer() {
     const [login, setLogin] = useState("");
@@ -7,6 +7,7 @@ function RegisterContainer() {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
     const [image] = useState("temp.jpg"); // Domyślna wartość dla pola "image"
+    const navigate = useNavigate();
 
 
     const handleSubmit = async (e) => {
@@ -28,12 +29,12 @@ function RegisterContainer() {
                 }),
             });
 
-            const data = await response.json();
+            const data = await response;
 
             if (response.ok) {
                 // Rejestracja zakończona pomyślnie
                 console.log(data);
-
+               navigate('/login');
             } else {
                 // Obsługa błędów rejestracji
                 console.error(data);

@@ -1,7 +1,5 @@
-package com.example.backend.services;
+package com.example.backend.review;
 
-import com.example.backend.models.Review;
-import com.example.backend.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +17,9 @@ public class ReviewService {
 
     public List<Review> getReviewsByProductId(Long productId) {
         return reviewRepository.findByProductId(productId);
+    }
+
+    public List<Review> getReviewsByUserId(Long userId) {
+        return reviewRepository.findByUserId(userId);
     }
 }

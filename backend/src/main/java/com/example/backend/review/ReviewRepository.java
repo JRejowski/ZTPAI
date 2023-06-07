@@ -1,6 +1,5 @@
-package com.example.backend.repositories;
+package com.example.backend.review;
 
-import com.example.backend.models.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -8,4 +7,6 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     List<Review> findByProductId(Long productId);
+    List<Review> findByUserId(Long userId);
+
 }

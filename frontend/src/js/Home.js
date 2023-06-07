@@ -3,6 +3,7 @@ import Navigation from "../components/Nav";
 import SearchBar from "../components/SearchBar";
 import "../css/home.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Home() {
     const [products, setProducts] = useState([]);
@@ -14,10 +15,15 @@ function Home() {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch("http://localhost:8080/products");
-            if (response.ok) {
-                const data = await response.json();
-                setProducts(data);
+            const response = await axios.get("http://localhost:8080/products",{
+                headers: {
+                    'authorization': 'Bearer '+localStorage.getItem('token'),
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (response.status === 200) {
+                setProducts(response.data);
             }
         } catch (error) {
             console.log("Error fetching products:", error);

@@ -9,15 +9,18 @@ import Rankings from "./Rankings";
 import Product from "./Product";
 
 function App() {
+
+    const isLogged = localStorage.getItem('token');
+
     return (
         <div>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Login/>} />
                     <Route path="/login" element={<Login/>} />
+                    <Route path="/register" element={<Register/>} />
                     <Route path="/home" element={<Home/>} />
                     <Route path="/products/:productId" element={<Product/>} />
-                    <Route path="/register" element={<Register/>} />
                     <Route path="/profile" element={<Profile/>} />
                     <Route path="/settings" element={<Settings/>} />
                     <Route path="/rankings" element={<Rankings/>} />

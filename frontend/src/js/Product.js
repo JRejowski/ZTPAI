@@ -14,7 +14,13 @@ function Product() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/products/${productId}`);
+                const response = await fetch(`http://localhost:8080/products/${productId}`,{
+                    headers: {
+                        'authorization': 'Bearer '+localStorage.getItem('token'),
+                        'Accept' : 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
                 if (response.ok) {
                     const data = await response.json();
                     setProduct(data);
@@ -39,7 +45,13 @@ function Product() {
 
     const fetchReviews = async (productId) => {
         try {
-            const response = await fetch(`http://localhost:8080/reviews/product/${productId}`);
+            const response = await fetch(`http://localhost:8080/reviews/product/${productId}`,{
+                headers: {
+                    'authorization': 'Bearer '+localStorage.getItem('token'),
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
             if (response.ok) {
                 const data = await response.json();
                 setReviews(data);

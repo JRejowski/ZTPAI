@@ -16,7 +16,13 @@ function Rankings() {
 
     const fetchProductsByCategory = async (category) => {
         try {
-            const response = await fetch(`http://localhost:8080/products/category/${category}`);
+            const response = await fetch(`http://localhost:8080/products/category/${category}`,{
+                headers: {
+                    'authorization': 'Bearer '+localStorage.getItem('token'),
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
             if (response.ok) {
                 const data = await response.json();
                 setProducts(data);

@@ -1,5 +1,7 @@
-package com.example.backend.models;
+package com.example.backend.rating;
 
+import com.example.backend.product.Product;
+import com.example.backend.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -36,6 +36,7 @@ main{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2em;
+    overflow-y: scroll;
 }
 
 .product{
@@ -47,7 +48,6 @@ main{
     justify-content: center;
     text-align: center;
 }
-
 
 
 

@@ -37,4 +37,16 @@ public class UserController {
         }
     }
 
+    @DeleteMapping("/user/delete")
+    public ResponseEntity<String> deleteAccount(Authentication authentication) {
+        try {
+            String email = authentication.getName();
+            User user =userService.getUserByEmail(email);
+            userService.deleteUserById(user.getId());
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "../components/Nav";
 import CategoryPicker from "../components/CategoryPicker";
-
+import whey from '../whey.jpg'
 import '../css/rankings.css'
 
 function Rankings() {
@@ -44,13 +44,13 @@ function Rankings() {
             <main>
                 <h1>Top supplements</h1>
                 <CategoryPicker onCategoryChange={handleCategoryChange} />
-                <div>
+                <div className='list'>
                     {products.map((product, index) => (
                         <div className='products' key={product.id}>
                             <h1>{index + 1}</h1>
-                            <img src={`../../public/img/${product.img}`} alt={product.name} />
-                            <a>{product.name}</a>
-                            <a>{product.ranking}</a>
+                            <img className='product-img' src={whey} alt={product.name} />
+                            <h1 className="rating">{product.name}</h1>
+                            <h1 className="rating">{product.ranking}</h1>
                         </div>
                     ))}
                 </div>

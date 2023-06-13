@@ -7,6 +7,7 @@
 
 .product-info{
     width: 75vw;
+    height: 25vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2em;
@@ -60,3 +61,11 @@
     padding: 0.5em;
 }
 
+.product-comments{
+    overflow-y: scroll;
+}
+
+.product-img{
+    height: 80%;
+    width: 50%;
+}

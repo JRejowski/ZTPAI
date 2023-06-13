@@ -36,7 +36,7 @@ public class Token {
     @Column(name = "token_type")
     private TokenType tokenType = TokenType.BEARER;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
     @Override

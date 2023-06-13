@@ -1,12 +1,42 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import '../css/modals.css';
 
 
 function DeleteAccountModal() {
     const [modal, setModal] = useState(false);
+    const navigate = useNavigate();
 
     const toggleModal = () => {
         setModal(!modal);
+    };
+
+
+    const handleDeleteAccount = () => {
+        // Wykonaj żądanie HTTP, aby usunąć konto użytkownika z backendu
+        const deleteAccount = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/users/user/delete", {
+                    method: "DELETE",
+                    headers: {
+                        'authorization': 'Bearer ' + localStorage.getItem('token'),
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    navigate('/login');
+                } else {
+                    console.log("Usuwanie konta nie powiodło się.");
+                }
+            } catch (error) {
+                console.log("Błąd podczas usuwania konta:", error);
+            }
+        };
+
+        // Wywołaj funkcję usuwania konta
+        deleteAccount();
     };
 
     return (
@@ -20,10 +50,9 @@ function DeleteAccountModal() {
                     <div onClick={toggleModal} className="overlay"></div>
                     <div className="modal-content">
                         <h2>Are you sure you want to delete your account?</h2>
-                        <form>
-                        <input name="passwd" type="password" placeholder="Confirm with your password"/>
-                        <button className="submit" type="submit">Delete</button>
-                        </form>
+                        <button className="submit" type="submit" onClick={handleDeleteAccount}>
+                            Delete
+                        </button>
                         <button className="close-modal" onClick={toggleModal}>
                             X
                         </button>

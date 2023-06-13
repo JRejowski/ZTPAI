@@ -8,5 +8,7 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
 
     List<Rating> findByUserId(Long userId);
 
+    Rating findByUserIdAndProductId(Long userId, Long productId);
+
 }
 

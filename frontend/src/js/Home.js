@@ -4,6 +4,7 @@ import SearchBar from "../components/SearchBar";
 import "../css/home.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import whey from '../whey.jpg'
 
 function Home() {
     const [products, setProducts] = useState([]);
@@ -47,7 +48,7 @@ function Home() {
                         (product) => (
                             <div className="product" key={product.id}>
                                 <img
-                                    src={`/../../public/img/${product.img}`}
+                                    src={whey}
                                     alt={product.name}
                                 />
                                 <Link to={`/products/${product.id}`}>

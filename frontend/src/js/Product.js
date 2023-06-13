@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navigation from "../components/Nav";
-
+import whey from '../whey.jpg'
 import '../css/product.css';
 
 function Product() {
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
-    const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
+    const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
 
     useEffect(() => {
@@ -40,7 +40,7 @@ function Product() {
     }, [product]);
 
     useEffect(() => {
-        console.log(reviews); // Dodaj ten log
+        console.log(reviews);
     }, [reviews]);
 
     const fetchReviews = async (productId) => {
@@ -61,20 +61,69 @@ function Product() {
         }
     };
 
-    const handleRatingChange = (event) => {
-        setRating(event.target.value);
-    };
 
     const handleCommentChange = (event) => {
         setComment(event.target.value);
     };
-
-    const handleSubmitComment = () => {
-        // Tutaj możesz dodać logikę wysyłania opinii do serwera lub inną odpowiednią logikę obsługi opinii
-        console.log("Opinia:", comment);
-        // Możesz także zresetować pole tekstowe po wysłaniu opinii
-        setComment("");
+    const handleRatingChange = (event) => {
+        const selectedRating = parseInt(event.target.value);
+        setRating(selectedRating);
     };
+
+
+    const handleSubmitComment = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/reviews/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: "Bearer " + localStorage.getItem("token"),
+                },
+                body: JSON.stringify({
+                    productId: productId,
+                    reviewText: comment,
+                }),
+            });
+
+            if (response.ok) {
+                const reviewDTO = await response.json();
+                console.log("Dodano opinię:", reviewDTO);
+                setComment("");
+            } else {
+                console.log("Błąd dodawania opinii:", response.statusText);
+            }
+        } catch (error) {
+            console.log("Błąd dodawania opinii:", error);
+        }
+    };
+
+    const handleSubmitRating = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/ratings/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: "Bearer " + localStorage.getItem("token"),
+                },
+                body: JSON.stringify({
+                    productId: productId,
+                    ratingValue: rating,
+                }),
+            });
+
+            if (response.ok) {
+                const ratingDTO = await response.json();
+                console.log("Dodano ocenę:", ratingDTO);
+                setRating(0);
+            } else {
+                console.log("Błąd dodawania oceny:", response.statusText);
+            }
+        } catch (error) {
+            console.log("Błąd dodawania oceny:", error);
+        }
+    };
+
+
 
     if (!product) {
         return <div>Loading...</div>;
@@ -87,7 +136,7 @@ function Product() {
                 <section className="product-details">
                     <h2>{product.name}</h2>
                     <div className="product-info">
-                        <img src={`/../../public/img/${product.img}`} alt={product.name} />
+                        <img className='product-img' src={whey} alt={product.name} />
                         <p>{product.description}</p>
                         <p>Ocena produktu: {product.ranking}/10</p>
                     </div>
@@ -96,21 +145,20 @@ function Product() {
                 <section className="product-rating">
                     <h2>Oceń produkt!</h2>
                     <select value={rating} onChange={handleRatingChange}>
-                        <option value={0}>Wybierz ocenę</option>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                        <option value={6}>6</option>
-                        <option value={7}>7</option>
-                        <option value={8}>8</option>
-                        <option value={9}>9</option>
-                        <option value={10}>10</option>
+                    <option value={0}>Wybierz ocenę</option>
+                        {[...Array(10)].map((_, index) => (
+                            <option key={index + 1} value={index + 1}>
+                                {index + 1}
+                            </option>
+                        ))}
                     </select>
+                    <button onClick={() => handleSubmitRating(document.querySelector('select').value)}>
+                        Oceń
+                    </button>
                 </section>
 
-                <section className="product-comments">
+
+                <section className="product-add-comment">
                     <h2>Opinions</h2>
                     <div className="comment-form">
                         <textarea
@@ -120,6 +168,8 @@ function Product() {
                         />
                         <button onClick={handleSubmitComment}>Dodaj opinię</button>
                     </div>
+                </section>
+                <section className="product-comments">
                     {reviews.map((review) => (
                         <div key={review.id} className="comment">
                             <h4>{review.user.login}</h4>

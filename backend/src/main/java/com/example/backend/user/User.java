@@ -1,11 +1,16 @@
 package com.example.backend.user;
 
+import com.example.backend.rating.Rating;
+import com.example.backend.review.Review;
+import com.example.backend.security.jwt.token.Token;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 
 @Getter
@@ -27,6 +32,17 @@ public class User implements UserDetails {
     private String image;
 
 
+    @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Token> tokens;
+
+    @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Review> reviews;
+
+    @OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Rating> ratings;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

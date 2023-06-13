@@ -1,4 +1,6 @@
-
+.list{
+    overflow-y: scroll;
+}
 .products {
     width: 60vw;
     display: flex;
@@ -6,9 +8,16 @@
     border: 1px solid #ccc;
     padding: 1em;
     margin-bottom: 10px;
+
 }
 .products>img{
-    width: auto;
-    height: auto;
+    width: 20%;
+    height: 20%;
 }
+
+.rating{
+    margin:0 0.5em;
+    font-size: 3em;
+}
+
 

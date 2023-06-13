@@ -1,7 +1,6 @@
 package com.example.backend.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,12 +9,11 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -27,9 +25,7 @@ public class UserService {
         return userRepository.findByEmail(mail);
     }
 
-    public void deleteUser(Long userId) {
-        userRepository.deleteById(userId);
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
     }
-
-
 }
